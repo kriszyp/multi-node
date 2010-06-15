@@ -36,7 +36,7 @@ writable stream that can be used to communicate with the other process. For exam
     var allStreams = [];
     nodes.addListener("node", function(stream){
         stream.addListener("data", function(data){
-            ... received a message from this node process ...
+            ... receiving data from this other node process ...
         });
         allStreams.push(stream);
     });
@@ -48,3 +48,11 @@ writable stream that can be used to communicate with the other process. For exam
     }
 
 (Note that at this time, the stream is guaranteed to be immediately writable)
+
+Licensing
+--------
+
+Multi-node is part of the Persevere project, and therefore is licensed under the
+AFL or BSD license. The Persevere project is administered under the Dojo foundation,
+and all contributions require a Dojo CLA.
+ 
