@@ -49,6 +49,12 @@ writable stream that can be used to communicate with the other process. For exam
 
 (Note that at this time, the stream is guaranteed to be immediately writable)
 
+Todo
+----
+
+* Delay "node" events until streams are truly writable
+* Provide a framing mechanism (probably web-sockets-ish) for inter-process communication
+
 Licensing
 --------
 
