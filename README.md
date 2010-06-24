@@ -24,6 +24,9 @@ original initiating master process. This can be used like:
         require("repl").start();
     }
 
+Inter-process Communication
+=======================
+
 Multi-node also provides critical inter-process communication facilities. For any web
 application that requires processes to be able to communicate with each other 
 (for sending messages like in chat applications, or for doing in-memory sessions, etc.),
@@ -47,14 +50,30 @@ writable stream that can be used to communicate with the other process. For exam
         });
     }
 
-(Note that at this time, the stream is guaranteed to be immediately writable)
+Framing
+--------
 
-Todo
+The stream object returned from the "node" event for cross-process communication
+can be a bit unwieldy to work with by itself, since the stream events can break data
+up in non-deterministic fashion, and works at the binary level. You can use 
+multi-node's framing mechanism to simplify this. Use the frameStream() function to
+transform a raw stream into a framed stream that follows the WebSocket API. With
+this API you can send strings, objects, and other values with the send(value) function
+and receive these values by listening for the "message" event:
+
+    nodes.addListener("node", function(stream){
+        stream = require("multi-node").frameStream(stream);
+        stream.addListener("message", function(data){
+            ... receiving string, object, or other value from the other node process ...
+        });
+        stream.send({foo:"bar"});
+    });
+
+
+Notes
 ----
 
-* Delay "node" events until streams are truly writable
-* Provide a framing mechanism (probably web-sockets-ish) for inter-process communication
-* Windows support, I don't think fd passing works yet 
+Node doesn't support fd passing windows yet, so mult-process delegation doesn't work on windows. 
 
 Licensing
 --------
