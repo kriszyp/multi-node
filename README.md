@@ -54,6 +54,7 @@ Todo
 
 * Delay "node" events until streams are truly writable
 * Provide a framing mechanism (probably web-sockets-ish) for inter-process communication
+* Windows support, I don't think fd passing works yet 
 
 Licensing
 --------
