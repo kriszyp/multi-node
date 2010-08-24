@@ -11,11 +11,17 @@ serve HTTP requests, simply pass an http.Server object to the listen function:
     	}, server);
 
 The listen function takes two arguments, the first is the options, the second is the 
-server.  The options argument may have two properties, "port" (specifying the 
-port number to listen on) and "nodes" (specifying the number of node processes).
+server.  The options argument may have the following properties:
+
+* port - specifying the port number to listen on (defaults to 80)
+* nodes - specifying the number of node processes (defaults to 1)
+* masterListen - Indicate whether the master process should listen and handle 
+requests as well (on by default, but you may want to turn this off if you processes are 
+prone to dying and you want to reliably utilize auto-restart of processes), defaults to true
+* restartChildren - Automatically restart child process when they die (defaults to true)
 
 The object returned from the listen function also provides some useful capabilities. 
-The return object has an isMaster property indicating if the current process is the 
+The return object has an "isMaster" property indicating if the current process is the 
 original initiating master process. This can be used like:
 
     var nodes = require("multi-node").listen(...);
@@ -23,6 +29,9 @@ original initiating master process. This can be used like:
         // start a repl on just one process
         require("repl").start();
     }
+
+The returned object also provides an "id" property with an id for the current 
+process (each node/process has a unique id).
 
 Inter-process Communication
 =======================
