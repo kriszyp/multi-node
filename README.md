@@ -15,6 +15,7 @@ server.  The options argument may have the following properties:
 
 * port - specifying the port number to listen on (defaults to 80)
 * nodes - specifying the number of node processes (defaults to 1)
+* host - address to listen on (defaults to 0.0.0.0)
 * masterListen - Indicate whether the master process should listen and handle 
 requests as well (on by default, but you may want to turn this off if you processes are 
 prone to dying and you want to reliably utilize auto-restart of processes), defaults to true
