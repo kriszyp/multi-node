@@ -21,4 +21,5 @@
     "url":"http://github.com/kriszyp/multi-node"
   },
   "directories": { "lib": "./lib" }
+  "main": "./lib/multi-node.js"
 }
