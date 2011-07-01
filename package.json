@@ -3,8 +3,8 @@
   "version": "0.2.2",
   "author": "Kris Zyp",
   "keywords": [
-    "json",
-    "schema"
+    "multiple processes",
+    "http"
   ],
   "licenses": [
      {
@@ -15,6 +15,12 @@
          "type": "BSD",
          "url": "http://trac.dojotoolkit.org/browser/dojo/trunk/LICENSE#L13"
      }
+  ],
+ "maintainers": [
+  	{
+  		"name": "Kris Zyp",
+  		"email": "kriszyp@gmail.com"
+  	}
   ],
   "repository": {
     "type":"git",
