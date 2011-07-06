@@ -1,6 +1,6 @@
 {
   "name": "multi-node",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Kris Zyp",
   "keywords": [
     "multiple processes",
