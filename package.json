@@ -2,6 +2,7 @@
   "name": "multi-node",
   "version": "0.2.3",
   "author": "Kris Zyp",
+  "description": "Multiple process HTTP serving for NodeJS",
   "keywords": [
     "multiple processes",
     "http"
