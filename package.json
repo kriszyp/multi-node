@@ -27,6 +27,6 @@
     "type":"git",
     "url":"http://github.com/kriszyp/multi-node"
   },
-  "main": "./lib/multi-node",
-  "directories": { "lib": "./lib" }
+  "main": "./multi-node",
+  "directories": { "lib": "." }
 }
