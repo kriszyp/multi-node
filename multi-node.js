@@ -34,6 +34,7 @@ exports.listen = function(options, server){
 		isMaster = true;
 		emitter.id = "master";
 		var children = [],
+			childId = 1,
 			tcpDescriptor = netBinding.socket("tcp4");
 		netBinding.bind(tcpDescriptor, options.port || 80, options.host || '0.0.0.0');
 		netBinding.listen(tcpDescriptor, 128);
@@ -79,15 +80,15 @@ exports.listen = function(options, server){
 			})(child);
 			child.addListener("exit", function(){
 				// remove the dead one
-				children.splice(i, 1);
+				delete children[i];
 				// make a new process to replace the dead one
 				if(options.restartChildren !== false){
-					createChild(children.length);
+					createChild(childId++);
 				}
 			});
 		}
 		for(var i = 0; i < numChildren; i++){
-			createChild(i);
+			createChild(childId++);
 		}
 		["SIGINT", "SIGTERM", "SIGKILL", "SIGQUIT", "SIGHUP", "exit"].forEach(function(signal){
 			process.addListener(signal, function(){
@@ -100,6 +101,7 @@ exports.listen = function(options, server){
 				});
 				// we use SIGHUP to restart the children
 				if(signal !== 'exit' && signal !== 'SIGHUP'){
+					options.restartChildren = false;
 					process.exit();
 				}
 			});
