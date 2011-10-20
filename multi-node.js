@@ -66,9 +66,11 @@ exports.listen = function(options, server){
 			child.master.write("tcp", "ascii", tcpDescriptor);
 			(function(child){
 				for(var j = 0; j < i; j++){
-						var siblingConnection = netBinding.socketpair();
-						child.master.write("sibling", "ascii", siblingConnection[1]);
-						children[j].master.write("sibling", "ascii", siblingConnection[0]);
+						if(children[j]){
+							var siblingConnection = netBinding.socketpair();
+							child.master.write("sibling", "ascii", siblingConnection[1]);
+							children[j].master.write("sibling", "ascii", siblingConnection[0]);
+						}
 				}
 				var masterChildConnection = netBinding.socketpair();
 				process.nextTick(function(){
