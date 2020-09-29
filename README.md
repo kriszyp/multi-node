@@ -1,3 +1,5 @@
+Multi-node is a deprecated package that provided functionality similar to Node's modern cluster functionality. Consequently this package is no longer needed and exists only for historical preservation.
+
 Multi-node provides launching of multiple NodeJS processes for TCP/HTTP serving.
 With multi-node it is very simple to add utilize multiple processes to concurrently
 serve HTTP requests, simply pass an http.Server object to the listen function:
